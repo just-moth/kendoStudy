@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2direction</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<!--三种方式指定方向-->
+<div id="foo11">
+    i will be animated
+</div>
+<div id="foo12">
+    i will be animated
+</div>
+<div id="foo13">
+    i will be animated
+</div>
+<script>
+    kendo.fx($("#foo11")).fadeOut().play();
+    kendo.fx($("#foo12")).fade("out").play();
+    kendo.fx($("#foo13")).fade().direction("out").play();
+</script>
+
+<div id="foo2">
+    I will be faded out and zoomed out.
+</div>
+<script>
+    var fadeOut21 = kendo.fx($("#foo2"));
+    var fadeOut22 = fadeOut21.fadeOut();
+    fadeOut22.add(fadeOut21.zoomOut());
+    fadeOut22.play();
+</script>
+
+<div id="foo31">
+    i will fade out
+</div>
+<div id="foo32">
+    i will also fade out
+</div>
+
+<script>
+    var eleFoo31 = $("#foo31");
+        eleFoo32 = $("#foo32");
+
+    $.when(kendo.fx(eleFoo31).fadeOut().play(),
+          kendo.fx(eleFoo32).fadeOut().play()).then(function(){
+              alert("alert something");
+    })
+</script>
+
+</body>
+</html>

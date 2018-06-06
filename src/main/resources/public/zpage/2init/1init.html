@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1init</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+    <!--
+    初始化Data属性:将html元素转换为KendoUI控制项
+
+    jquery方法:$("#datepicker").kendoDatePicker();
+    kendo.init()方法:寻找该id下的所有data-role属性,每个 kendo UI 组件的 role 的值为该UI组件名称的小写名字
+    -->
+    <div id="container">
+        <input data-role="numerictextbox" />
+    </div>
+    <script type="text/javascript">
+        kendo.init($("#container"));
+    </script>
+
+
+    <!--
+        预设                  加载顺序 :Kendo UI Web, Kendo UI DataViz
+        kendo UIMobile应用    加载顺序 :Kendo UI Mobile，Kendo UI Web， Kendo UI DataViz
+        指定组件全路径
+     -->
+    <div data-role="view">
+        <!-- specify the Kendo UI Web ListView widget -->
+        <div data-role="kendo.ui.ListView"></div>
+    </div>
+    <<script>
+        var app = new kendo.mobile.Application();
+    </script>
+
+</body>
+</html>

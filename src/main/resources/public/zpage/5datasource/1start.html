@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1start</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<!--定义数据-->
+<script>
+    var movies=[
+        {
+            title: "Star Wars: A New Hope",
+            year: 1977
+        }, {
+            title: "Star Wars: The Empire Strikes Back",
+            year: 1980
+        }, {
+            title: "Star Wars: Return of the Jedi",
+            year: 1983
+        }
+    ];
+    var localDataSource = new kendo.data.DataSource({data:movies});
+</script>
+<script>
+    var dataSource = new kendo.data.DataSource({
+        transport:{
+            read:{
+                /*远程服务网址*/
+                url:"/datasource/getmap",
+                /*JSONP是跨域AJAX所必需的*/
+                dataType:"jsonp",
+                /*发送到远程服务的附加参数*/
+                data:{
+                    q:"html5"
+                }
+            }
+        },
+        /*描述结果格式*/
+        schema:{
+            /*数据源将绑定到的数据位于“结果”字段中*/
+            data:"results"
+        }
+    })
+</script>
+
+</body>
+</html>

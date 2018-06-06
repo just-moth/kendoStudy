@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1extend</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<script>
+    var Person = kendo.Class.extend({
+        firstName:'Not Set',
+        lastName:'Not Set',
+        isAPrettyCoolPerson:false,
+        sayHello:function(){
+            alert("hello i'm " + this.firstName + " " + this.lastName);
+        },
+        init:function(firstname,lastname){
+          if(firstname)this.firstName = firstname;
+          if(lastname) this.lastName=lastname;
+        }
+    });
+    /*创建对象*/
+    var person = new Person();
+    person.sayHello();
+    /*用有参构造创建对象*/
+    var person2 = new Person("json","max");
+    person2.isAPrettyCoolPerson = true;
+    person2.sayHello();
+
+    /*创建继承对象*/
+    var Parent = Person.extend({
+        firstName:'Mark',
+        lastName:'Holland'
+    });
+
+    /*设置myDad 的isAPrettyCoolPerson = true*/
+    var myDad = new Parent();
+    myDad.isAPrettyCoolPerson = true;
+    myDad.sayHello();
+    alert(myDad.isAPrettyCoolPerson);
+
+    /*Child继承了Parent的firstName,lastName,Parent的firstName和lastName由mydady修改,isAPrettyCoolPerson没有继承*/
+    var Child = Parent.extend({});
+    var me = new Child();
+    me.sayHello();
+    alert(me.isAPrettyCoolPerson);
+
+
+
+</script>
+</body>
+</html>

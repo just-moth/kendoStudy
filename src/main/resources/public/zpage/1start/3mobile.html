@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3mobile</title>
+    <link href="/kendoUI/styles/kendo.mobile.all.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.mobile.min.js"></script>
+</head>
+<body>
+    <div data-role="view" data-title="View" id="index">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+        <ul data-role="listview">
+            <li>Item1</li>
+            <li>Item2</li>
+        </ul>
+        <footer data-role="footer">
+            <div data-role="tabstrip">
+                <a data-icon="home" href="#index">Home</a>
+                <a data-icon="settings" href="#settings">Settings</a>
+            </div>
+        </footer>
+    </div>
+    <script>
+        var app = new kendo.mobile.Application();
+    </script>
+</body>
+</html>

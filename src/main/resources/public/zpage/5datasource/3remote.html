@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3remote</title>
+
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<div id="chart" style="width: 800px;height: 400px"></div>
+<div id="grid" style="width: 800px;height: 400px"></div>
+<script>
+    var sharableDataSource = new kendo.data.DataSource({
+        /*读取远程数据*/
+        transport:{
+            read:{
+                /*url和数据类型*/
+                url:"/datasource/getlist",
+                dataType:"json"
+            }
+        }
+    });
+
+    $("#chart").kendoChart({
+        /*图标标题*/
+        title:{
+            text:"Employee Sales"
+        },
+        /*绑定数据*/
+        dataSource:sharableDataSource,
+        /*数据字段,以及数据说明*/
+        series:[{
+            field:"sales",
+            name:"sales in Units"
+        }],
+        /*x轴说明*/
+        categoryAxis:{
+            field:"employee"
+        }
+    });
+
+    $("#grid").kendoGrid({
+        dataSource: sharableDataSource,
+        /*显示字段*/
+        columns: [
+            {
+                field: "employee",
+                title: "Employee"
+            },
+            {
+                field: "sales",
+                title: "Sales",
+                template: '#= kendo.toString(sales, "N0") #'
+            }]
+    });
+</script>
+
+</body>
+</html>

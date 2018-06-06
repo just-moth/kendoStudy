@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2bind</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<div id="chart" style="width: 600px;height: 400px;"></div>
+<script>
+    $("#chart").kendoChart({
+        /*标题*/
+        title:{
+            text:"employee sales"
+        },
+        /*数据*/
+        dataSource:new kendo.data.DataSource({
+            data: [
+                {
+                    employee: "Joe Smith",
+                    sales: 2000
+                },
+                {
+                    employee: "Jane Smith",
+                    sales: 2250
+                },
+                {
+                    employee: "Will Roberts",
+                    sales: 1550
+                }]
+        }),
+        /*图标属性*/
+        series:[{
+            /*类型线形图*/
+            type:"line",
+            /*线数据字段*/
+            field:"sales",
+            /*线描述*/
+            name:"Sales in Units"
+        }],
+        categoryAxis:{
+            /*x轴描述字段*/
+            field:"employee"
+        }
+    })
+</script>
+
+</body>
+</html>

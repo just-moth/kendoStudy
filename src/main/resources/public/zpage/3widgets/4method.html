@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4method</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<input id="autocomplete"/>
+<!--使用jquery方法获取kendo ui对象-->
+<script>
+    $("#autocomplete").kendoAutoComplete(["Apples", "Oranges", "Graps"]);
+    /*data参数为组件名称*/
+    var autocomplete = $("#autocomplete").data("kendoAutoComplete");
+    /*赋默认值*/
+    autocomplete.value("Cherry");
+    /*取默认值*/
+    var value = autocomplete.value();
+    alert(value);
+</script>
+</body>
+</html>

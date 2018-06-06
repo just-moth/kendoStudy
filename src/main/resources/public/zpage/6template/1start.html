@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1start</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<!--
+    1.显示字面量#=#
+    2.显示html元素#:#,html不编译,以字符串显示
+    3.执行任意的Javascript代码 #if(){#...#}#
+-->
+<script>
+    var temp = kendo.template("<div id='box'>#= firstname#</div>")
+</script>
+<div id="example"></div>
+<script>
+    var template = kendo.template("<div id='box'>#= firstName#</div>");
+    var data = {firstName:"Todd"};
+    var result = template(data);
+    $("#example").html(result);
+</script>
+</body>
+</html>

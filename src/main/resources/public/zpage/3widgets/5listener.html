@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5listener</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<input id="autocomplete"/>
+<!--使用定义的方式-->
+<script>
+    function autocomplete_change(){
+        var val = $("#autocomplete").val();
+        alert(val);
+    }
+    $("#autocomplete").kendoAutoComplete({
+        change:autocomplete_change
+    });
+</script>
+<input id="autocomplete2"/>
+<!--使用绑定bind方式-->
+<script>
+    function autocomplete_change2(){
+        var val = $("#autocomplete2").val();
+        alert(val);
+    }
+    $("#autocomplete2").kendoAutoComplete();
+    var kendo = $("#autocomplete2").data("kendoAutoComplete");
+    kendo.bind("change",autocomplete_change2);
+</script>
+</body>
+</html>

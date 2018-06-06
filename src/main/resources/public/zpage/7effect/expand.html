@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>expand</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<div id="foo" style="width:200px; height: 200px; background: white;border:solid;">
+    I will be animated
+</div>
+<!--横向-->
+<script>
+    kendo.fx($("#foo")).expand("horizontal").play();
+    // an alternative syntax would be
+    // kendo.fx($("#foo")).expandHorizontal().play();
+</script>
+
+<div id="foo1" style="width:200px; height: 200px; background: white;border:solid">
+    I will be animated
+</div>
+<!--纵向-->
+<script>
+    kendo.fx($("#foo1")).expand("vertical").play();
+    // an alternative syntax would be
+    // kendo.fx($("#foo")).expandVertical().play();
+</script>
+
+</body>
+</html>

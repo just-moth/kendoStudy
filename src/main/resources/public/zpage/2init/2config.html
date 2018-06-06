@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2config</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+    <!--
+        data-前缀对目标元素属性进行配置
+        eg: data-inore-case
+
+        若属性本身带data前缀,则无需
+        eg: data-text-field
+
+
+    -->
+    <div id="container">
+        <input data-role="autocomplete"
+               data-ignore-case="true"
+               data-text-field="name"
+               data-source="{data:[{name:'John Doe'},{name:'Jane Doe'}]}"/>
+
+    </div>
+    <script type="text/javascript">
+        kendo.init($("#container"))
+    </script>
+
+</body>
+</html>
