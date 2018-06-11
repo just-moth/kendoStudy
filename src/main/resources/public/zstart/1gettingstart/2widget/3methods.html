@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3methods</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<!--The jQuery Data Method-->
+<p> The jQuery Data Method: <input id="animal1"/></p>
+<script>
+    $(function(){
+        $("#animal1").kendoAutoComplete({
+            dataSource:[ "Ant", "Antilope", "Badger", "Beaver", "Bird" ]
+        });
+
+        var autoComplete1 = $("#animal1").data("kendoAutoComplete");
+        console.log("The jQuery Data Method");
+        console.log(autoComplete1);
+    });
+</script>
+
+<!--getKendo* Method-->
+<p> getKendo* Method: <input id="animal2"/></p>
+<script>
+    $(function(){
+        $("#animal2").kendoAutoComplete({
+            dataSource:[ "Ant", "Antilope", "Badger", "Beaver", "Bird" ]
+        });
+        var kendoAutoComplete2 = $("#animal2").getKendoAutoComplete();
+        console.log("getKendo* Method");
+        console.log(kendoAutoComplete2);
+    });
+</script>
+<!--The JavaScript Method Syntax-->
+<p>The JavaScript Method Syntax: <input id="animal3"/></p>
+<script>
+    $(function(){
+        $("#animal3").kendoAutoComplete({
+            dataSource:[ "Ant", "Antilope", "Badger", "Beaver", "Bird" ]
+        });
+        var kendoAutoComplete3 = $("#animal3").data("kendoAutoComplete");
+
+        kendoAutoComplete3.focus();
+    });
+</script>
+
+<!--Event Binding during Initialization-->
+<p>Event Binding during Initialization: <input id="animal4"/></p>
+<script>
+    $(function(){
+        $("#animal4").kendoAutoComplete({
+            dataSource:[ "Ant", "Antilope", "Badger", "Beaver", "Bird" ],
+            change: function(e){
+                console.log("Event Binding during Initialization");
+            }
+        });
+    });
+</script>
+
+<!--Event Binding after Initialization-->
+<p>Event Binding after Initialization: <input id="animal5"/></p>
+<script>
+    $(function(){
+        $("#animal5").kendoAutoComplete({
+            dataSource:[ "Ant", "Antilope", "Badger", "Beaver", "Bird" ]
+        });
+
+        var kendoAutoComplete5 = $("#animal5").data("kendoAutoComplete");
+
+        kendoAutoComplete5.bind("change",function(e){
+            console.log("Event Binding after Initialization: change");
+        });
+        kendoAutoComplete5.bind("open",function(e){
+            console.log("Event Binding after Initialization: open");
+        });
+    });
+</script>
+
+<!--Event Handler Arguments-->
+<p>Event Handler Arguments:<input id="animal6"/></p>
+<script>
+    $(function(){
+       $("#animal6").kendoAutoComplete({
+           dataSource:[ "Ant", "Antilope", "Badger", "Beaver", "Bird" ],
+           open:function(e){
+               console.log("Event Handler Arguments: open");
+           },
+           change:function(e){
+               console.log("Event Handler Arguments: change");
+           }
+       })
+    });
+</script>
+
+<!--Preventing Events-->
+<p>Preventing Events:<input id="animal7"/></p>
+<script>
+    $(function(){
+        $("#animal7").kendoAutoComplete({
+            dataSource:[ "Ant", "Antilope", "Badger", "Beaver", "Bird" ]
+        });
+        var kendoAutoComplete7 = $("#animal7").data("kendoAutoComplete");
+
+        kendoAutoComplete7.bind('open',function(e){
+           e.preventDefault();
+        });
+    });
+</script>
+
+<!--Unbinding from Events-->
+<p>Unbinding from Events:<input id="animal8"/></p>
+<button id="unBindButton">Unbind event</button>
+<script>
+    $(function(){
+        var handler= function(e){
+            console.log(e);
+        };
+
+        $("#animal8").kendoAutoComplete({
+            dataSource:[ "Ant", "Antilope", "Badger", "Beaver", "Bird" ]
+        });
+
+        var kendoAutoComplete8 = $("#animal8").data("kendoAutoComplete");
+
+        kendoAutoComplete8.bind("open",handler);
+
+        $("#unBindButton").on("click",function(){
+            kendoAutoComplete8.unbind("open",handler);
+        });
+
+    });
+</script>
+</body>
+</html>

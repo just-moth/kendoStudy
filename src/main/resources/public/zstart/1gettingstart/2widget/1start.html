@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1start</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<div id="myWindow">...window content...</div>
+<script>
+    // initialize the widget, which also returns the widget element
+    var winJquery = $("#myWindow").kendoWindow( { /*...*/ } );// returns div#myWindow as a jQuery object
+    console.log(winJquery);
+    var winObject = $("#myWindow").data("kendoWindow");
+    console.log(winObject);
+
+    var winElement2 = $("#myWindow");
+    console.log(winElement2);
+    var winElement3 = $("#myWindow").data("kendoWindow").element;// returns div#myWindow as a jQuery object
+    console.log(winElement3);
+    var winElement4 = winObject.element;
+    console.log(winElement4);
+
+    // get the wrapper
+    var winWrapper1 = $("#myWindow").data("kendoWindow").wrapper;// returns div.k-window as a jQuery object
+    console.log(winWrapper1);
+    var winWrapper2 = winObject.wrapper;// returns div.k-window as a jQuery object
+    console.log(winWrapper2);
+</script>
+</body>
+</html>

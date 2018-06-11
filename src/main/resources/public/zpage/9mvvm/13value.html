@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>13value</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<div id="test1">
+    <input data-bind="value: inputValue"/>
+    <textarea data-bind="value: textareaValue"></textarea>
+</div>
+<script>
+    var viewModel1 = kendo.observable({
+        inputValue: "Input value",
+        textareaValue: "Textarea value"
+    });
+    kendo.bind($("#test1"), viewModel1)
+</script>
+<!--
+Value 绑定依赖于 DOM 的 change 事件
+可以通过修改 data-value-update 属性来使用不同的 DOM 事件，比如 keyup 或 keypress 事件
+-->
+<div id="test2">
+    <input data-value-update="keyup" data-bind="value: inputValue"/>
+</div>
+<script>
+var viewModel2 = kendo.observable({
+    inputValue:"Input value"
+});
+kendo.bind($("#test2"),viewModel2);
+</script>
+
+<!--select元素绑定value-->
+<select id="test3" data-bind="value: selectedColor">
+    <option value="red">Red</option>
+    <option value="green">Green</option>
+    <option value="blue">Blue</option>
+</select>
+<script>
+var viewModel3 = kendo.observable({
+    selectedColor:"green"
+});
+kendo.bind($("#test3"),viewModel);
+</script>
+
+<!--绑定多个-->
+<select id="test4" data-bind="value: selectedColors" multiple="multiple">
+    <option>Red</option>
+    <option>Green</option>
+    <option>Blue</option>
+</select>
+<script>
+    var viewModel = kendo.observable({
+        selectedColors: ["Blue","Green"]
+    });
+
+    kendo.bind($("#test4"), viewModel);
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5click</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<div id="view">
+    <span data-bind="click: showDescription">Show description</span>
+    <span data-bind="visible: isDescriptionShown,text: description"></span>
+</div>
+<script>
+    var viewModel1 = kendo.observable({
+        isDescriptionShown:false,
+        description: "description",
+        showDescription: function(e){
+            this.set("isDescriptionShown",true);
+        }
+    });
+    kendo.bind($("#view"),viewModel1);
+</script>
+
+<!--这两种写法等效-->
+<!--click绑定的是events实例-->
+<span data-bind="click: clickHandler"></span>
+<span data-bind="events:{click: clickHandler}"></span>
+
+<!--终止事件向上传递??-->
+<span id="stopSpan"data-bind="click: click">Click</span>
+<script>
+    var viewModel2 = kendo.observable({
+        click: function(e){
+            e.stopPropagation();
+        }
+    });
+    kendo.bind($("#stopSpan"),viewModel2);
+</script>
+
+<!--定制事件缺省处理-->
+<!--本来是跳转页面,缺省处理掉,不做任何事情-->
+<a href="http://example.com" data-bind="click:click">Click</a>
+<script>
+    var viewModel3 = kendo.observable({
+        click:function(e){
+            e.preventDefault();
+        }
+    });
+    kendo.bind($("a"),viewModel3);
+</script>
+
+</body>
+</html>

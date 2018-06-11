@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2router</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<!--缺省根路径回调-->
+<script>
+    var router1 = new kendo.Router();
+
+    router1.route("/",function(){
+        console.log("router1 ","/ url was loaded");
+    });
+
+    $(function(){
+        router1.start();
+    });
+</script>
+<!--参数-->
+<script>
+    var router2 = new kendo.Router();
+    router2.route("/items/:category/:id",function(category,id){
+        console.log("router2 ",category, "item with", id, " was requested")
+    });
+    $(function(){
+        router2.start();
+        router2.navigate("/items/books/59")
+    });
+</script>
+<!--可选参数-->
+<script>
+    var router3 = new kendo.Router();
+    router3.route("/items(/:category)(/:id)",function(category,id){
+       console.log("router3 ",category,"item with",id,"was requested");
+    });
+
+    $(function(){
+        router3.start();
+        router3.navigate("/items/books/59");
+        router3.navigate("/items/accessories");
+        router3.navigate("/items/books");
+    });
+</script>
+<!--通配符匹配-->
+<script>
+    var router4 = new kendo.Router();
+    router4.route("/items/*suffix",function(suffix){
+       console.log("router4 ",suffix) ;
+    });
+    $(function(){
+        router4.start();
+        router4.navigate("/items/books/59");
+        router4.navigate("/items");
+        router4.navigate("/items/books");
+    });
+</script>
+<!--页面切换-->
+<a href="#/foo">Foo</a>
+<script>
+    var router5 = new kendo.Router({
+        routeMissing: function(e) {
+            console.log(e.url) ;
+        } ,
+        change: function(e){
+            console.log(e.url);
+            /*阻止页面切换*/
+            e.preventDefault();
+        }
+    });
+
+    router5.route("/foo",function(){
+        console.log("welcome to foo");
+    });
+
+    $(function(){
+        router5.start();
+        router5.navigate("/foo");
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1start</title>
+    <link href="/kendoUI/styles/kendo.mobile.all.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+    <script>
+        var app = new kendo.mobile.Application(document.body,
+            {
+                platform:'ios'
+            });
+    </script>
+</head>
+<body>
+<!--data-role属性用来建立HTML和KendoUImobile库之间的联系-->
+<div id="home" data-role="view" data-layout="default">
+    Hello Mobile World!
+</div>
+
+<section data-role="layout" data-id="default">
+    <header data-role="header">
+        <div data-role="navbar">My App</div>
+    </header>
+    <!--View content will render here-->
+    <footer data-role="footer">
+        <div data-role="tabstrip">
+            <a href="#home">Home</a>
+        </div>
+    </footer>
+</section>
+
+</body>
+</html>

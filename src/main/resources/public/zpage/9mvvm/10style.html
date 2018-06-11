@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10style</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<span data-bind="style: {color: priceColor,fontWeight: priceFontWeight},text: price"></span>
+<!--
+要注意的是 CSS 属性的名称，如果 CSS 名称中含有连字符（-），
+比如 font-weight, font-size ,background-color 等，在
+使用时需要省略到连字符，使用 camel 风格的命名，如 fontWeight,
+fontSize,backgroundColor 等。
+-->
+<script type="text/javascript">
+    var viewModel = kendo.observable({
+        price: 42,
+        priceColor: function () {
+            var price = this.get("price");
+            if (price <= 42) {
+                return "#00ff00";
+            } else {
+                return "#ff0000";
+            }
+        },
+        priceFontWeight: function () {
+            var price = this.get("price");
+
+            if (price <= 42) {
+                return "bold";
+            } else {
+                return ""; //will reset the font weight to its default value
+            }
+        }
+    });
+    kendo.bind($("span"), viewModel);
+</script>
+</body>
+</html>

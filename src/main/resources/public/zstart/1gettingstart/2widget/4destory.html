@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4destory</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<!--
+删除widget实例
+删除自动生成的html
+使用kendo.destory()
+-->
+
+<!--
+Destroy Widgets Manually手动删除
+widget不需要
+widget所在container内进行ajax和dom替换更新,防止内存泄露和其他
+widget行为改变
+-->
+<div id="grid"></div>
+<script>
+    $("#grid").kendoGrid({/* configuration */})// create a Grid widget
+    $("#grid").data("kendoGrid").destory();// destroy the Grid
+    $("#grid").empty(); // empty the Grid content (inner HTML)
+    // or
+    $("#grid").remove(); // remove all Grid HTML
+
+</script>
+
+<!--Destroy Widgets Automatically-->
+<!--when the web page is unloaded.-->
+
+<!--Destroy Widgets Created through MVVM-->
+<!-- first use the kendo.unbind() method to remove any MVVM bindings related to the widget-->
+<!--and then call kendo.destroy() for the appropriate container,-->
+<!--or the destroy() method of each widget inside this container.
+
+-->
+</body>
+</html>

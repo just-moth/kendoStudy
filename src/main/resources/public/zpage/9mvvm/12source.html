@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12source</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+
+<!--Source绑定到数组-->
+<ul id="test1" data-template="ul-template1" data-bind="source: products"></ul>
+<script id="ul-template1" type="text/x-kendo-template">
+    <li>
+        id:<span data-bind="text: id"></span>
+        name:<span data-bind="text: name"></span>
+    </li>
+</script>
+<script>
+    var viewModel1 = kendo.observable({
+        products: [
+            {id: 1, name: "Coffee"},
+            {id: 2, name: "Tea"},
+            {id: 3, name: "Juice"}
+        ]
+    });
+    kendo.bind($("#test1"), viewModel1);
+</script>
+
+<ul id="test2" data-template="ul-template2" data-bind="source: products"></ul>
+<script id="ul-template2" type="text/x-kendo-template">
+    <li data-bind="text: this"></li>
+</script>
+<script>
+    var viewModel2 = kendo.observable({
+        products:["Coffee","Tea","Juice"]
+    });
+    kendo.bind($("#test2"),viewModel2)
+</script>
+
+<!--Source绑定到非数组-->
+<div id="test3" data-template="div-template3" data-bind="source: person"></div>
+<script id="div-template3" type="text/x-kendo-template">
+    Name: <span data-bind="text: name"></span>
+</script>
+<script>
+    var viewModel3 = kendo.observable({
+        person:{
+            name: "John Doe"
+        }
+    });
+    kendo.bind($("#test3"),viewModel3)
+</script>
+
+<div id="test4" data-template="div-template4" data-bind="source: this"></div>
+<script id="div-template4" type="text/x-kendo-template">
+    Name: <span data-bind="text: name"></span>
+</script>
+<script>
+    var viewModel4 = kendo.observable({
+        name: "John Doe"
+    });
+    kendo.bind($("#test4"),viewModel4)
+</script>
+
+<!--source绑定select-->
+<select id="test5" data-bind="source: colors,value: defaultColor"></select>
+<script>
+    var viewModel5 = kendo.observable({
+        colors:["Red", "Green", "Blue"],
+        defaultColor: "Blue"
+    });
+    kendo.bind($("#test5"),viewModel5);
+</script>
+
+<select id="test6" data-bind="source: products,value: defaultColor" data-text-field="name" data-value=-field="id></select>
+<script>
+    var viewModel6 = kendo.observable({
+        products:[
+            { id: 1, name: "Coffee" },
+            { id: 2, name: "Tea" },
+            { id: 3, name: "Juice" }
+        ],
+        defaultColor: {id: 3, name: "Juice"}
+    });
+    kendo.bind($("#test6"),viewModel6);
+</script>
+</body>
+</html>

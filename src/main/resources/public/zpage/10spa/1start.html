@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1start</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+<script id="index" type="text/x-kendo-template">
+Hello<span data-bind="text:foo"></span>
+</script>
+
+<script>
+    var index = new kendo.View(
+        "index", // the id of the script element that contains the view markup
+        { model: kendo.observable({ foo: "World!" }) }
+    );
+
+    var router = new kendo.Router();
+
+    router.route("/",function(){
+        index.render("#app");
+    });
+
+    $(function(){
+        router.start();
+    });
+
+</script>
+</body>
+</html>

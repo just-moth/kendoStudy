@@ -10,30 +10,87 @@
 </head>
 <body>
 
+<!--概述-->
 <script>
     /*创建新的ObservableObject*/
-    var viewModel1 = new kendo.data.ObservableObject({
+    var viewModel11 = new kendo.data.ObservableObject({
         field1:"value1",
         field2:"value2"
     });
-    var viewModel2 = new kendo.data.ObservableObject({
+    var viewModel12 = new kendo.data.ObservableObject({
         field1:"value1",
         field2:"value2"
     });
     /*kendo.observable创建对象*/
-    var viewModel3 = kendo.observable({
+    var viewModel13 = kendo.observable({
         name:"John Doe"
     });
-    viewModel3.set("name","Jane Doe");
+    viewModel13.set("name","Jane Doe");
     /*kendo.bind方法自动转换,但是如果该ViewModel对象之后使用到,必须手动创建*/
-    var viewModelNotObs = {
+    var viewModelNotObs1 = {
         name: "John Doe"
     }
     kendo.bind(document.body,viewModelNotObs);
-    viewModelNotObs.set("name","john doe");/*报错,因为没有ObservableObject*/
+    viewModelNotObs1.set("name","john doe");/*报错,因为没有ObservableObject对象,viewModelNotObs.set is not a function*/
 </script>
 
+<!--读取ObservableObject-->
+<script>
+    var viewModel21 = kendo.observable({
+        name:"John Doe"
+    })
+    viewModel21.set("name","Jane Doe");
 
+    var name21 = viewModel21.get("name");
+    console.log("读取:"+name21);
+
+    /*嵌套读取*/
+    var viewModel22 = kendo.observable({
+        person:{
+            name:"John Doe"
+        }
+    });
+    var personName21 = viewModel22.get("person.name");
+    console.log("嵌套读取:"+personName21);
+</script>
+
+<!--设置ObservableObject属性-->
+<script>
+    var viewModel31 = kendo.observable({
+        name:"John doe"
+    });
+    viewModel31.set("name","Jane Doe");
+    var name31 = viewModel31.get("name");
+    console.log("设置:"+name31);
+
+    var viewModel32 = kendo.observable({
+        person:{
+            name:"John doe"
+        }
+    });
+    viewModel32.set("person.name","Jane Doe");
+    var psersonName32 = viewModel32.get("person.name");
+    console.log("嵌套设置:"+psersonName32);
+</script>
+
+<!--创建关联属性-->
+<span data-bind="text: fullName"></span>
+<script>
+    var viewModel41 = kendo.observable({
+        firstName:"john",
+        lastName:"doe",
+        fullName:function(){
+            /*
+            * 会跟踪变化
+            * this.get("firstName") + " " + this.get("lastName")
+            * 不会跟踪变化
+            * this.firstName + " " + this.lastName
+            * */
+            return this.get("firstName") + " " + this.get("lastName");
+        }
+    });
+    kendo.bind($("span"),viewModel41)
+</script>
 
 
 </body>

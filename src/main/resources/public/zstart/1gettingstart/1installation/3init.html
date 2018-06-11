@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3init</title>
+    <link href="/kendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="/kendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/kendoUI/js/kendo.all.min.js"></script>
+</head>
+<body>
+<!--spa-->
+<div id="container1"></div>
+<script id="index" type="text/x-kendo-template">
+    <div>Hello <input data-role="autocomplete" data-source="['foo', 'bar', 'baz']"/>!</div>
+</script>
+<script>
+    var view = new kendo.View("index");
+    view.render("#container1");
+</script>
+
+<!--mvvm-->
+<div id="container2">
+    <div>Hello <input data-role="autocomplete" data-bind="source: source">!</div>
+</div>
+<script>
+    kendo.bind($("#container2"),{source: ['foo', 'bar', 'baz']})
+</script>
+
+<!--
+Hybrid UI
+data-role 为 view
+data-model 与 mvvm名称相同
+data-bind 中dataSource与mvvm中属性名相同
+
+会覆盖所有前面两个div,猜测是由mobile js
+-->
+
+<div data-role="view" data-model="foo3">
+    <div>
+        <input data-role="autocomplete" data-source="['foo', 'bar', 'baz']">
+    </div>
+    <div>
+        <input data-role="autocomplete" data-bind="source: dataSource"/>
+    </div>
+</div>
+<script>
+    var foo3 = kendo.observable({
+        dataSource: ['foo', 'bar', 'baz']
+    });
+    new kendo.mobile.Application();
+</script>
+
+
+</body>
+</html>
