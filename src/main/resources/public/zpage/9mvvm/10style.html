@@ -9,7 +9,7 @@
     <script src="/kendoUI/js/kendo.all.min.js"></script>
 </head>
 <body>
-<span data-bind="style: {color: priceColor,fontWeight: priceFontWeight},text: price"></span>
+<span data-bind="style: {color: priceColor,fontWeight: priceFontWeight},text: price,click:change"></span>
 <!--
 要注意的是 CSS 属性的名称，如果 CSS 名称中含有连字符（-），
 比如 font-weight, font-size ,background-color 等，在
@@ -35,6 +35,9 @@ fontSize,backgroundColor 等。
             } else {
                 return ""; //will reset the font weight to its default value
             }
+        },
+        change:function(){
+            this.set("price",50);
         }
     });
     kendo.bind($("span"), viewModel);

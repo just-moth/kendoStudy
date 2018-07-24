@@ -14,7 +14,7 @@ import java.util.List;
  * @modified by:
  */
 @RestController
-@RequestMapping("/init")
+@RequestMapping("/zpage/init")
 public class InitController {
 
     @GetMapping("/datasource")

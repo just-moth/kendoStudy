@@ -20,19 +20,23 @@
     i will be animated
 </div>
 <script>
-    kendo.fx($("#foo11")).fadeOut().play();
-    kendo.fx($("#foo12")).fade("out").play();
-    kendo.fx($("#foo13")).fade().direction("out").play();
+    setTimeout(function(){
+        kendo.fx($("#foo11")).fadeOut().endValue(0.5).play();
+        kendo.fx($("#foo12")).fade("out").endValue(0.5).play();
+        kendo.fx($("#foo13")).fade().direction("out").endValue(0.5).play();
+    },3000);
 </script>
 
 <div id="foo2">
     I will be faded out and zoomed out.
 </div>
 <script>
-    var fadeOut21 = kendo.fx($("#foo2"));
-    var fadeOut22 = fadeOut21.fadeOut();
-    fadeOut22.add(fadeOut21.zoomOut());
-    fadeOut22.play();
+    setTimeout(function(){
+        var fadeOut21 = kendo.fx($("#foo2"));
+        var fadeOut22 = fadeOut21.fadeOut();
+        fadeOut22.add(fadeOut21.zoomOut().endValue(0.5));
+        fadeOut22.endValue(0.5).play();
+    },3000);
 </script>
 
 <div id="foo31">
@@ -43,13 +47,17 @@
 </div>
 
 <script>
-    var eleFoo31 = $("#foo31");
+    setTimeout(function(){
+        var eleFoo31 = $("#foo31");
         eleFoo32 = $("#foo32");
 
-    $.when(kendo.fx(eleFoo31).fadeOut().play(),
-          kendo.fx(eleFoo32).fadeOut().play()).then(function(){
-              alert("alert something");
-    })
+        $.when(
+            kendo.fx(eleFoo31).fadeOut().endValue(0.5).play(),
+            kendo.fx(eleFoo32).zoomOut().endValue(0.5).play()
+        ).then(function(){
+            alert("alert something");
+        })
+    },3000);
 </script>
 
 </body>

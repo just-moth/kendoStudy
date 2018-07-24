@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @modified by:
  */
 @RestController
-@RequestMapping("/start")
+@RequestMapping("/zpage/start")
 public class StartController {
 
     @GetMapping("/dateviz/pointer")

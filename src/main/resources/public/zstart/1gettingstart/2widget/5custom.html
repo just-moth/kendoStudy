@@ -9,142 +9,6 @@
     <script src="/kendoUI/js/kendo.all.min.js"></script>
 </head>
 <body>
-<!--basic-->
-<script>
-    (function($) {
-        // shorten references to variables. this is better for uglification
-        var kendo = window.kendo,
-            ui = kendo.ui,
-            Widget = ui.Widget
-
-        var MyWidget = Widget.extend({
-            // initialization code goes here
-        });
-
-    })(jQuery);
-</script>
-
-<!--添加初始化方法-->
-<script>
-    (function($) {
-
-        // shorten references to variables. this is better for uglification var kendo = window.kendo,
-        ui = kendo.ui,
-            Widget = ui.Widget
-
-        var MyWidget = Widget.extend({
-
-            init: function(element, options) {
-
-                // base call to widget initialization
-                Widget.fn.init.call(this, element, options);
-
-            },
-
-            options: {
-                // the name is what it will appear as off the kendo namespace(i.e. kendo.ui.MyWidget).
-                // The jQuery plugin would be jQuery.fn.kendoMyWidget.
-                name: "MyWidget"
-                // other options go here
-        }
-
-    });
-
-        ui.plugin(MyWidget);
-
-    })(jQuery);
-</script>
-
-<!--使用数据源,处理事件-->
-<script>
-    (function($) {
-        var kendo = window.kendo,
-            ui = kendo.ui,
-            Widget = ui.Widget,
-            CHANGE = "change";
-        var Repeater = kendo.ui.Widget.extend({
-            init: function(element, options) {
-                var that = this;
-                kendo.ui.Widget.fn.init.call(that, element, options);
-                // initialize or create dataSource
-                that._dataSource();
-            },
-            options: {
-                name: "Repeater"
-            },
-            _dataSource: function() {
-                var that = this;
-                // returns the datasource OR creates one if using an array or a configuration
-                that.dataSource = kendo.data.DataSource.create(that.options.dataSource);
-
-                //绑定刷新事件
-                // bind to the change event to refresh the widget
-                that.dataSource.bind(CHANGE, function() {
-                    //实现刷新功能
-                    that.refresh();
-                });
-            }
-        });
-        kendo.ui.plugin(Repeater);
-    })(jQuery);
-</script>
-
-<script>
-    (function() {
-        var kendo = window.kendo,
-            ui = kendo.ui,
-            Widget = ui.Widget,
-
-            CHANGE = "change";
-
-        var Repeater = Widget.extend({
-            init: function(element, options) {
-                var that = this;
-
-                kendo.ui.Widget.fn.init.call(that, element, options);
-                /*模版*/
-                that.template = kendo.template(that.options.template || "<p><strong>#= data #</strong></p>");
-
-                that._dataSource();
-            },
-            options: {
-                name: "Repeater",
-                /*自动绑定到添加选项*/
-                autoBind: true,
-                /*使用模版*/
-                template: ""
-            },
-            /*实现刷新功能*/
-            refresh: function() {
-                var that = this,
-                    view = that.dataSource.view(),
-                    html = kendo.render(that.template, view);
-
-                that.element.html(html);
-            },
-            _dataSource: function() {
-                var that = this;
-                // returns the datasource OR creates one if using array or configuration object
-
-                that.dataSource = kendo.data.DataSource.create(that.options.dataSource);
-
-                // bind to the change event to refresh the widget
-                that.dataSource.bind(CHANGE, function() {
-                    that.refresh();
-                });
-
-                //从数据源获取
-                // trigger a read on the dataSource if one hasn't happened yet
-                if (that.options.autoBind) {
-                    that.dataSource.fetch();
-                }
-            }
-        });
-
-        ui.plugin(Repeater);
-
-    })(jQuery);
-</script>
 
 <!--完整案例-->
 <div id="repeater"></div>
@@ -159,6 +23,7 @@
 
 <script>
     (function() {
+        // shorten references to variables. this is better for uglification
         var kendo = window.kendo,
             ui = kendo.ui,
             Widget = ui.Widget,
@@ -166,16 +31,22 @@
             CHANGE = "change";
 
         var Repeater = Widget.extend({
+            // initialization code goes here
             init: function(element, options) {
                 var that = this;
 
+                // base call to initialize widget
                 kendo.ui.Widget.fn.init.call(that, element, options);
                 that.template = kendo.template(that.options.template || "<p><strong>#= data #</strong></p>");
 
+                // initialize or create dataSource
                 that._dataSource();
             },
             options: {
+                // the name is what it will appear as off the kendo namespace(i.e. kendo.ui.MyWidget).
+                // The jQuery plugin would be jQuery.fn.kendoMyWidget.
                 name: "Repeater",
+                // other options go here
                 autoBind: true,
                 template: ""
             },
@@ -188,8 +59,8 @@
             },
             _dataSource: function() {
                 var that = this;
-                // returns the datasource OR creates one if using array or configuration object
 
+                // returns the datasource OR creates one if using array or configuration
                 that.dataSource = kendo.data.DataSource.create(that.options.dataSource);
 
                 // bind to the change event to refresh the widget
@@ -197,6 +68,7 @@
                     that.refresh();
                 });
 
+                // trigger a read on the dataSource if one hasn't happened yet
                 if (that.options.autoBind) {
                     that.dataSource.fetch();
                 }

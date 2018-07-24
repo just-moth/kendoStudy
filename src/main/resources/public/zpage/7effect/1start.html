@@ -13,15 +13,19 @@
     I will be animated
 </div>
 <script>
-    var effectWrapper = kendo.fx($("#foo"));
-    var fadeOutEffect = effectWrapper.fadeOut();
-    fadeOutEffect.play();
+    setTimeout(function(){
+        var effectWrapper = kendo.fx($("#foo"));
+        var fadeOutEffect = effectWrapper.fadeOut().endValue(0.5);
+        fadeOutEffect.play();
+    },3000);
 </script>
 <div id="foo2">
     I will be animated
 </div>
 <script>
-    kendo.fx($("#foo2")).fadeOut().play();
+    setTimeout(function(){
+        kendo.fx($("#foo2")).fadeOut().endValue(0.5).play();
+    },3000);
 </script>
 
 

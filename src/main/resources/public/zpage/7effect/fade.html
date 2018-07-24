@@ -14,7 +14,9 @@
 </div>
 <!--淡出-->
 <script>
-    kendo.fx($("#foo1")).fade("out").play();
+    setTimeout(function(){
+        kendo.fx($("#foo1")).fade("out").play();
+    },3000)
     // an alternative syntax would be
     // kendo.fx($("#foo")).fadeOut.play();
 </script>
@@ -24,7 +26,9 @@
 </div>
 <!--淡入-->
 <script>
-    kendo.fx($("#foo2")).fade("in").play();
+    setTimeout(function(){
+        kendo.fx($("#foo2")).fade("in").play();
+    },3000)
     // an alternative syntax would be
     // kendo.fx($("#foo")).fadeIn.play();
 </script>
@@ -34,7 +38,9 @@
 </div>
 <!--淡出初始透明度-->
 <script>
-    kendo.fx($("#foo3")).fade("out").startValue(0.5).play();
+    setTimeout(function(){
+        kendo.fx($("#foo3")).fade("out").startValue(0.5).play();
+    },3000)
 </script>
 
 
@@ -43,7 +49,9 @@
 </div>
 <!--淡入结束透明度-->
 <script>
-    kendo.fx($("#foo4")).fade("in").endValue(0.5).play();
+    setTimeout(function(){
+        kendo.fx($("#foo4")).fade("in").endValue(0.5).play();
+    },3000)
 </script>
 </body>
 </html>

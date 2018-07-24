@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="view">
-    <input type="text" data-bind="value:name,disabled:isNameDisabled"/>
+    <input id="intput" type="text" data-bind="value:name,disabled:isNameDisabled"/>
     <button data-bind="click: disableInput">Disable</button>
 </div>
 <script type="text/javascript">
@@ -18,7 +18,7 @@
         isNameDisabled:false,
         name:"john Doe",
         disableInput:function(){
-            this.set("isNameDisabled",true);
+            this.set("isNameDisabled",!this.get("isNameDisabled"));
         }
     });
 

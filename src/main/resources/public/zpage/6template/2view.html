@@ -9,8 +9,8 @@
     <script src="/kendoUI/js/kendo.all.min.js"></script>
 </head>
 <!--
-    1.显示字面量#=#
-    2.显示html元素#:#,html不编译,以字符串显示
+    1.显示字面量#= #
+    2.显示html元素#: #,html不编译,以字符串显示
     3.执行任意的Javascript代码 #if(){#...#}#
 -->
 <body>
@@ -44,7 +44,7 @@
     var template1 = kendo.template($("#javascriptTemplate").html());
 
     //Create some dummy data
-    var data1 = ["Todd", "Steve", "Burke"];
+    var data1 = ["<b>Todd</b>", "Steve", "Burke"];
 
     var result1 = template1(data1); //Execute the template
     $("#example1").html(result1);

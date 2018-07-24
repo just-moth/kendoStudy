@@ -16,7 +16,7 @@ import java.util.Map;
  * @modified by:
  */
 @RestController
-@RequestMapping("/datasource")
+@RequestMapping("/zpage/datasource")
 public class DataSourceController {
 
     @GetMapping("/getmap")

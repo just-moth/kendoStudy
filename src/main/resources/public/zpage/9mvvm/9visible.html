@@ -11,12 +11,12 @@
 <body>
 <div>
     <div id="view">
-        <div data-bind="invisible: isInvisible">some content</div>
+        <div data-bind="visible: isInvisible">some content</div>
         <div data-bind="click: show">show</div>
     </div>
     <script type="text/javascript">
         var viewModel1 = kendo.observable({
-            isInvisible: true,
+            isInvisible: false,
             show: function(){
                 this.set("isInvisible",true);
             }

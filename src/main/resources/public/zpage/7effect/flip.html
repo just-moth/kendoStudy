@@ -38,7 +38,9 @@
 </div>
 
 <script>
-    kendo.fx($("#container")).flip("horizontal", $("#foo"), $("#bar")).play();
+    setTimeout(function(){
+        kendo.fx($("#container")).flip("horizontal", $("#foo"), $("#bar")).play();
+    },3000)
     // an alternative syntax would be
     // kendo.fx($("#container")).flipHorizontal($("#foo"), $("#bar")).play();
 </script>

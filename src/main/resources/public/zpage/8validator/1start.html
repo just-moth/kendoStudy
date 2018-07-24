@@ -13,7 +13,7 @@
 <div id="myform">
     <input type="text" name="firstName" required/>
     <input type="text" name="lastName" required/>
-    <input type="tel" pattern="\d{10}" validationMessage="十个数字"/>
+    <input type="tel" pattern="\d{10}" validationMessage="十个数字" required/>
     <button id="save" type="button">Save</button>
 </div>
 <script>
@@ -26,6 +26,10 @@
         }
     });
 </script>
+
+<br/>
+<br/>
+
 <div id="form">
     <input type="text" name="firstName2" required/>
     <input type="text" name="twitter2" pattern="https?://(?:www\.)?twitter\.com/.+i" />
@@ -33,11 +37,22 @@
     <input type="number" name="age22" max="42" min="20" step="2"/>
     <input type="url" name="url2"/>
     <input type="email" name="email2"/>
+    <button id="save2" type="button">Save</button>
 </div>
 
+<script>
+    var validator = $("#form").kendoValidator().data("kendoValidator");
+    $("#save2").on("click",function(){
+        if(validator.validate()){
+            alert("成功");
+        }else {
+            alert("失败");
+        }
+    });
+</script>
 
-
-
+<br/>
+<br/>
 <form id="myform2">
     <input name="username"/> <br />
     <input name="town" /> <br />
